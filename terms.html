@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - HelpMeReport</title>
+    <meta name="description" content="HelpMeReport Terms of Service - Rules for using our service.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-void: #09090b;
+            --color-smoke: #18181b;
+            --color-ash: #27272a;
+            --color-stone: #a1a1aa;
+            --color-snow: #fafafa;
+            --color-violet: #7c3aed;
+            --color-violet-light: #a78bfa;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-void);
+            color: var(--color-snow);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(9, 9, 11, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-ash);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-snow);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--color-stone);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-left: 2rem;
+        }
+
+        .nav-links a:hover { color: var(--color-snow); }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            color: var(--color-stone);
+            font-size: 0.875rem;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-snow);
+        }
+
+        p, li {
+            color: var(--color-stone);
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        strong { color: var(--color-snow); }
+
+        a { color: var(--color-violet-light); }
+        a:hover { color: var(--color-violet); }
+
+        .highlight {
+            background: var(--color-smoke);
+            border: 1px solid var(--color-ash);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight p { margin-bottom: 0; }
+
+        .warning {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--color-ash);
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--color-stone);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        footer a:hover { color: var(--color-snow); }
+
+        @media (max-width: 768px) {
+            .container { padding: 6rem 1.5rem 3rem; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">helpmereport</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/privacy.html">Privacy</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last updated: February 6, 2026</p>
+
+        <div class="highlight">
+            <p><strong>Plain English summary:</strong> Use our prompts to help with your reports. You're responsible for the final medical content. Don't share your account or redistribute our prompts.</p>
+        </div>
+
+        <h2>1. Agreement</h2>
+        <p>By using HelpMeReport ("Service"), you agree to these Terms. If you don't agree, don't use the Service. We may update these Terms - continued use means you accept changes.</p>
+
+        <h2>2. What We Provide</h2>
+        <p>HelpMeReport provides:</p>
+        <ul>
+            <li>Voice-to-report prompt templates for radiology dictation</li>
+            <li>A sync service to keep prompts updated across your devices</li>
+            <li>A Mac menu bar application for prompt management</li>
+        </ul>
+        <p>We provide tools to assist with report generation. We do not provide medical advice, diagnosis, or treatment recommendations.</p>
+
+        <h2>3. Medical Disclaimer</h2>
+        <div class="warning">
+            <p><strong>Important:</strong> HelpMeReport prompts are assistive tools, not a replacement for professional medical judgment.</p>
+            <ul style="margin-bottom: 0; margin-top: 1rem;">
+                <li>You are solely responsible for reviewing and approving all reports</li>
+                <li>Prompts may contain errors or produce inappropriate output for specific cases</li>
+                <li>Always verify AI-generated content before signing reports</li>
+                <li>Clinical decision-making remains your professional responsibility</li>
+            </ul>
+        </div>
+
+        <h2>4. Who Can Use This</h2>
+        <p>You must be:</p>
+        <ul>
+            <li>A licensed healthcare professional (radiologist, radiology resident, or equivalent)</li>
+            <li>At least 18 years old</li>
+            <li>Authorized to practice in your jurisdiction</li>
+        </ul>
+        <p>We reserve the right to verify credentials and terminate accounts that don't meet these requirements.</p>
+
+        <h2>5. Your Account</h2>
+        <ul>
+            <li>Keep your login credentials secure</li>
+            <li>Don't share your account with others</li>
+            <li>You're responsible for all activity under your account</li>
+            <li>Notify us immediately if you suspect unauthorized access</li>
+        </ul>
+
+        <h2>6. Acceptable Use</h2>
+        <p><strong>You may:</strong></p>
+        <ul>
+            <li>Use prompts for your personal clinical practice</li>
+            <li>Modify prompts for your workflow</li>
+            <li>Use on multiple personal devices (within your plan limits)</li>
+        </ul>
+        <p><strong>You may not:</strong></p>
+        <ul>
+            <li>Share, resell, or redistribute prompts</li>
+            <li>Use automated tools to scrape or copy our content</li>
+            <li>Reverse engineer the sync service</li>
+            <li>Use the Service for any illegal purpose</li>
+        </ul>
+
+        <h2>7. Intellectual Property</h2>
+        <p>Our prompts, software, and content are protected by copyright. You receive a license to use them, not ownership. This license is:</p>
+        <ul>
+            <li>Non-exclusive</li>
+            <li>Non-transferable</li>
+            <li>Revocable (if you violate these Terms)</li>
+            <li>Limited to your subscription tier</li>
+        </ul>
+
+        <h2>8. Payments & Subscriptions</h2>
+        <ul>
+            <li>Prices are in Euros (€) unless otherwise stated</li>
+            <li>Subscriptions renew automatically until cancelled</li>
+            <li>Cancel anytime - access continues until the end of your billing period</li>
+            <li>No refunds for partial months (except where required by law)</li>
+            <li>We may change prices with 30 days notice</li>
+        </ul>
+
+        <h2>9. Free Tier</h2>
+        <p>The free tier includes limited prompts and may have feature restrictions. We may modify or discontinue the free tier at any time.</p>
+
+        <h2>10. Service Availability</h2>
+        <p>We aim for high availability but don't guarantee uninterrupted service. We may:</p>
+        <ul>
+            <li>Perform maintenance (we'll try to notify you)</li>
+            <li>Modify or discontinue features</li>
+            <li>Suspend accounts that violate these Terms</li>
+        </ul>
+
+        <h2>11. Limitation of Liability</h2>
+        <div class="highlight">
+            <p>To the maximum extent permitted by law:</p>
+            <ul style="margin-bottom: 0; margin-top: 1rem;">
+                <li>The Service is provided "as is" without warranties</li>
+                <li>We're not liable for clinical outcomes or medical decisions</li>
+                <li>Our total liability is limited to fees you've paid us in the past 12 months</li>
+                <li>We're not liable for indirect, incidental, or consequential damages</li>
+            </ul>
+        </div>
+
+        <h2>12. Indemnification</h2>
+        <p>You agree to indemnify us against claims arising from:</p>
+        <ul>
+            <li>Your use of the Service</li>
+            <li>Your medical practice and clinical decisions</li>
+            <li>Your violation of these Terms</li>
+        </ul>
+
+        <h2>13. Termination</h2>
+        <p>Either party can terminate:</p>
+        <ul>
+            <li><strong>You:</strong> Cancel anytime in your account settings</li>
+            <li><strong>Us:</strong> We may terminate for Terms violations, with or without notice</li>
+        </ul>
+        <p>On termination, your right to use prompts ends, but provisions that should survive (liability, indemnification) continue.</p>
+
+        <h2>14. Governing Law</h2>
+        <p>These Terms are governed by Portuguese law. Disputes will be resolved in the courts of Porto, Portugal, unless consumer protection laws in your jurisdiction require otherwise.</p>
+
+        <h2>15. Contact</h2>
+        <p>Questions? Email <a href="mailto:hello@helpmereport.com">hello@helpmereport.com</a></p>
+        <p>
+            HelpMeReport<br>
+            Porto, Portugal
+        </p>
+    </div>
+
+    <footer>
+        <a href="/">Home</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:hello@helpmereport.com">Contact</a>
+        <p style="margin-top: 1.5rem; color: var(--color-stone); font-size: 0.875rem;">© 2026 HelpMeReport</p>
+    </footer>
+</body>
+</html>

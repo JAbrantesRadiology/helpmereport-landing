@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - HelpMeReport</title>
+    <meta name="description" content="HelpMeReport Privacy Policy - How we handle your data.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-void: #09090b;
+            --color-smoke: #18181b;
+            --color-ash: #27272a;
+            --color-stone: #a1a1aa;
+            --color-snow: #fafafa;
+            --color-violet: #7c3aed;
+            --color-violet-light: #a78bfa;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-void);
+            color: var(--color-snow);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(9, 9, 11, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-ash);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-snow);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--color-stone);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin-left: 2rem;
+        }
+
+        .nav-links a:hover { color: var(--color-snow); }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            color: var(--color-stone);
+            font-size: 0.875rem;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-snow);
+        }
+
+        p, li {
+            color: var(--color-stone);
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li { margin-bottom: 0.5rem; }
+
+        strong { color: var(--color-snow); }
+
+        a { color: var(--color-violet-light); }
+        a:hover { color: var(--color-violet); }
+
+        .highlight {
+            background: var(--color-smoke);
+            border: 1px solid var(--color-ash);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight p { margin-bottom: 0; }
+
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--color-ash);
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--color-stone);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        footer a:hover { color: var(--color-snow); }
+
+        @media (max-width: 768px) {
+            .container { padding: 6rem 1.5rem 3rem; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">helpmereport</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/terms.html">Terms</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: February 6, 2026</p>
+
+        <div class="highlight">
+            <p><strong>The short version:</strong> We collect minimal data. Your patient data never touches our servers. Prompts sync, reports stay local on your device.</p>
+        </div>
+
+        <h2>1. Who We Are</h2>
+        <p>HelpMeReport is operated by João Abrantes, based in Porto, Portugal. We provide voice-to-report AI prompt tools for radiologists.</p>
+        <p>Contact: <a href="mailto:hello@helpmereport.com">hello@helpmereport.com</a></p>
+
+        <h2>2. What We Collect</h2>
+        <p>We collect only what's necessary to provide our service:</p>
+        <ul>
+            <li><strong>Account information:</strong> Email address, name (optional), and payment details (processed by Stripe)</li>
+            <li><strong>Usage data:</strong> Which prompts you download, sync timestamps, and basic analytics</li>
+            <li><strong>Device information:</strong> Device identifiers for prompt sync functionality</li>
+        </ul>
+
+        <h2>3. What We Do NOT Collect</h2>
+        <div class="highlight">
+            <p><strong>We never collect, store, or process:</strong></p>
+            <ul style="margin-bottom: 0;">
+                <li>Patient data or protected health information (PHI)</li>
+                <li>Radiology reports or dictations</li>
+                <li>Medical images or DICOM files</li>
+                <li>Voice recordings</li>
+            </ul>
+        </div>
+        <p>Our prompts are templates that run locally on your device. The AI processing happens on your machine through your voice dictation software - we only sync the prompt templates themselves.</p>
+
+        <h2>4. How We Use Your Data</h2>
+        <ul>
+            <li>Provide and improve our services</li>
+            <li>Process payments and manage subscriptions</li>
+            <li>Send service updates and product announcements (you can opt out)</li>
+            <li>Respond to support requests</li>
+        </ul>
+
+        <h2>5. Data Storage & Security</h2>
+        <p>Your data is stored on Supabase infrastructure in the European Union. We use industry-standard encryption for data in transit (TLS) and at rest.</p>
+        <p>Payment processing is handled entirely by Stripe - we never see or store your full card details.</p>
+
+        <h2>6. Third-Party Services</h2>
+        <p>We use the following services:</p>
+        <ul>
+            <li><strong>Supabase:</strong> Database and authentication (EU region)</li>
+            <li><strong>Stripe:</strong> Payment processing</li>
+            <li><strong>Basic analytics:</strong> Page views and feature usage (no personal tracking)</li>
+        </ul>
+
+        <h2>7. Your Rights (GDPR)</h2>
+        <p>As we're based in the EU, you have the right to:</p>
+        <ul>
+            <li><strong>Access:</strong> Request a copy of your data</li>
+            <li><strong>Rectification:</strong> Correct inaccurate data</li>
+            <li><strong>Erasure:</strong> Request deletion of your data</li>
+            <li><strong>Portability:</strong> Export your data in a standard format</li>
+            <li><strong>Object:</strong> Opt out of marketing communications</li>
+        </ul>
+        <p>To exercise these rights, email <a href="mailto:hello@helpmereport.com">hello@helpmereport.com</a>.</p>
+
+        <h2>8. Data Retention</h2>
+        <p>We retain your data while your account is active. If you delete your account, we remove your personal data within 30 days, except where required by law (e.g., payment records for tax purposes).</p>
+
+        <h2>9. Cookies</h2>
+        <p>We use minimal cookies:</p>
+        <ul>
+            <li><strong>Essential:</strong> Authentication and session management</li>
+            <li><strong>Analytics:</strong> Anonymous usage statistics (no personal tracking)</li>
+        </ul>
+        <p>No advertising or third-party tracking cookies.</p>
+
+        <h2>10. Changes to This Policy</h2>
+        <p>We may update this policy occasionally. Significant changes will be communicated via email. Continued use after changes constitutes acceptance.</p>
+
+        <h2>11. Contact</h2>
+        <p>Questions about privacy? Email us at <a href="mailto:hello@helpmereport.com">hello@helpmereport.com</a>.</p>
+    </div>
+
+    <footer>
+        <a href="/">Home</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:hello@helpmereport.com">Contact</a>
+        <p style="margin-top: 1.5rem; color: var(--color-stone); font-size: 0.875rem;">© 2026 HelpMeReport</p>
+    </footer>
+</body>
+</html>
