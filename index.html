@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpMeReport - Sync Your Radiology Dictation Prompts</title>
+    <meta name="description" content="Keep your radiology dictation templates synchronized across all workstations. Works with SuperWhisper, Dragon Medical, and more.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="HelpMeReport - Dictate. Sync. Done.">
+    <meta property="og:description" content="Your radiology prompts, always where you need them.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://helpmereport.com">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --color-void: #09090b;
+            --color-smoke: #18181b;
+            --color-ash: #27272a;
+            --color-stone: #a1a1aa;
+            --color-snow: #fafafa;
+            --color-violet: #7c3aed;
+            --color-violet-light: #a78bfa;
+            --color-violet-glow: rgba(124,58,237,0.15);
+            --color-success: #22c55e;
+            --color-error: #ef4444;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --transition: 200ms ease-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-void);
+            color: var(--color-snow);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-ash);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-snow);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-stone);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-snow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--color-void) 0%, var(--color-smoke) 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(250,250,250,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(250,250,250,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--color-violet-glow);
+            border: 1px solid var(--color-violet);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            color: var(--color-violet-light);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-snow) 0%, var(--color-stone) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--color-stone);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Email Form */
+        .email-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 480px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.25rem;
+            background: var(--color-smoke);
+            border: 1px solid var(--color-ash);
+            border-radius: var(--radius-sm);
+            color: var(--color-snow);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--color-violet);
+            box-shadow: 0 0 0 3px var(--color-violet-glow);
+        }
+
+        .email-input::placeholder {
+            color: var(--color-stone);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: var(--color-violet);
+            color: var(--color-snow);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background: #6d28d9;
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            width: 100%;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            min-height: 1.5rem;
+        }
+
+        .form-message.success {
+            color: var(--color-success);
+        }
+
+        .form-message.error {
+            color: var(--color-error);
+        }
+
+        .disclaimer {
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--color-stone);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--color-smoke);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-stone);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--color-void);
+            border: 1px solid var(--color-ash);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            transition: border-color var(--transition), transform var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: rgba(124, 58, 237, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--color-stone);
+            font-size: 0.95rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 2rem;
+            background: var(--color-void);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--color-violet);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step p {
+            color: var(--color-stone);
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 6rem 2rem;
+            background: var(--color-smoke);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--color-void);
+            border: 1px solid var(--color-ash);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            text-align: center;
+            transition: border-color var(--transition);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-violet);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-violet);
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--color-stone);
+            font-weight: 400;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            color: var(--color-stone);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            background: var(--color-void);
+            border-top: 1px solid var(--color-ash);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--color-stone);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--color-stone);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--color-snow);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .email-input {
+                width: 100%;
+            }
+
+            .features, .how-it-works, .pricing {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .feature-card, .step, .pricing-card {
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">helpmereport</a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#" class="btn" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Get Early Access</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">🚀 Launching March 2026</span>
+            <h1>Dictate. Sync. Done.</h1>
+            <p class="subtitle">
+                Your radiology prompts, always where you need them. 
+                HelpMeReport syncs your voice dictation templates across 
+                SuperWhisper, Dragon Medical, and more.
+            </p>
+            
+            <form class="email-form" id="signup-form">
+                <input 
+                    type="email" 
+                    class="email-input" 
+                    placeholder="Enter your email" 
+                    required
+                    id="email-input"
+                >
+                <button type="submit" class="btn" id="submit-btn">
+                    Get Early Access
+                </button>
+            </form>
+            <div class="form-message" id="form-message"></div>
+            <p class="disclaimer">No credit card required. Join 200+ radiologists on the waitlist.</p>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why radiologists love it</h2>
+            <p class="section-subtitle">
+                Stop fighting file management. Start focusing on what matters.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud sync</h3>
+                    <p>Edit once, update everywhere. Your prompts follow you to any workstation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>Multi-provider</h3>
+                    <p>SuperWhisper today. Dragon Medical and WhisperFlow coming Q2 2026.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant updates</h3>
+                    <p>Change a template, see it sync in seconds. No more USB drives.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure by design</h3>
+                    <p>Encrypted in transit and at rest. HIPAA-conscious from day one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Three steps to sanity</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install the app</h3>
+                    <p>One-click install on macOS. Windows coming Q2 2026.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Connect your provider</h3>
+                    <p>Link SuperWhisper or your dictation tool of choice.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Forget about it</h3>
+                    <p>Your prompts sync automatically. Focus on medicine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple pricing</h2>
+            <p class="section-subtitle">
+                Launch special: Lock in early-bird pricing forever.
+            </p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Free</div>
+                    <div class="plan-price">$0<span>/mo</span></div>
+                    <ul class="plan-features">
+                        <li>10 prompts</li>
+                        <li>1 device</li>
+                        <li>Community templates</li>
+                    </ul>
+                    <button class="btn" style="width: 100%; background: var(--color-smoke); border: 1px solid var(--color-ash);">Start Free</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="plan-name">Pro</div>
+                    <div class="plan-price">$9<span>/mo</span></div>
+                    <ul class="plan-features">
+                        <li>Unlimited prompts</li>
+                        <li>5 devices</li>
+                        <li>Priority support</li>
+                        <li>Custom categories</li>
+                    </ul>
+                    <button class="btn" style="width: 100%;">Go Pro</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="mailto:hello@helpmereport.com">Contact</a>
+        </div>
+        <p>© 2026 HelpMeReport. Built in Porto, Portugal.</p>
+    </footer>
+
+    <script>
+        // Supabase configuration
+        const SUPABASE_URL = 'https://itjdetremvjoezrecvxx.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0amRldHJlbXZqb2V6cmVjdnh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzMjU5NTMsImV4cCI6MjA4NTkwMTk1M30.XmnckvPUarHBQPmbrNQ4uyL2Ca_ZkJWzaPoGksmh79k';
+
+        const form = document.getElementById('signup-form');
+        const emailInput = document.getElementById('email-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const formMessage = document.getElementById('form-message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            formMessage.textContent = '';
+            formMessage.className = 'form-message';
+
+            try {
+                // Store email in Supabase waitlist table
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        source: 'landing_page',
+                        created_at: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok || response.status === 201) {
+                    formMessage.textContent = '🎉 You\'re on the list! We\'ll be in touch soon.';
+                    formMessage.className = 'form-message success';
+                    emailInput.value = '';
+                } else if (response.status === 409) {
+                    formMessage.textContent = 'You\'re already on the waitlist!';
+                    formMessage.className = 'form-message success';
+                } else {
+                    throw new Error('Failed to join');
+                }
+            } catch (error) {
+                console.error('Signup error:', error);
+                formMessage.textContent = 'Something went wrong. Please try again.';
+                formMessage.className = 'form-message error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Get Early Access';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
